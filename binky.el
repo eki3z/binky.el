@@ -382,7 +382,7 @@ Return nil if no project was found."
            (projectile-project-root))
           ((and (memq binky-project-detection '(auto project))
                 (fboundp 'project-current))
-           (when-let ((project (project-current)))
+           (when-let* ((project (project-current)))
              (expand-file-name
               (if (fboundp 'project-root)
                   (project-root project)
@@ -470,7 +470,7 @@ ALIST must be a binky records list."
 
 (defun binky--swap-out ()
   "Turn pin records into list of props when a buffer is killed."
-  (when-let ((to-swap (->> binky-records
+  (when-let* ((to-swap (->> binky-records
                            (binky--filter :type (eq it 'pin))
                            (binky--filter :buffer (eq it (current-buffer))))))
     (--each to-swap
@@ -483,7 +483,7 @@ ALIST must be a binky records list."
 
 (defun binky--swap-in ()
   "Turn record from list of infos into marker when a buffer is reopened."
-  (when-let ((to-swap (binky--filter :file (string= it (buffer-file-name))
+  (when-let* ((to-swap (binky--filter :file (string= it (buffer-file-name))
                                      binky-records)))
     (--each to-swap
       (setcdr (alist-get (nth 0 it) binky-records)
@@ -735,7 +735,7 @@ Press ESC key to quit."
           (progn
             (binky--highlight "warn")
             (binky--message (caar lst) 'floated))
-        (if-let (((not float-p))
+        (if-let*  (((not float-p))
                  (dup (binky--filter :line (equal it (line-number-at-pos (point) t)) lst)))
             (progn
               (binky--highlight "warn")
@@ -749,9 +749,9 @@ Press ESC key to quit."
   "Delete record relate to MARK from `binky-records'."
   (if (eq mark ?')
       (binky--message mark 'backed)
-    (if-let ((record (binky--record mark)))
+    (if-let*  ((record (binky--record mark)))
         (progn
-          (when-let ((buf (binky--prop record :buffer)))
+          (when-let* ((buf (binky--prop record :buffer)))
             (save-excursion
               (with-current-buffer buf
                 (goto-char (binky--prop record :position))
@@ -771,7 +771,7 @@ If optional arg OTHER is non-nil, jump to other window."
         ;; if other is true, select window follow the order:
         (if (and other buf)
             ;; if non-seleted windows contain buf exists
-            (if-let ((win-list (delete (selected-window)
+            (if-let*  ((win-list (delete (selected-window)
                                        (get-buffer-window-list buf 'not-minibuf))))
                 (select-window
                  ;; 1. goto window which contain target first if exists
@@ -878,7 +878,7 @@ FILE or default cache."
   "Save pin records information to FILE.
 If optional argument FILE is nil, choose default file instead."
   (interactive)
-  (when-let ((output (binky-select-cache file "[Binky] save records to: ")))
+  (when-let* ((output (binky-select-cache file "[Binky] save records to: ")))
     (make-directory binky-cache-directory t)
     (with-temp-file output
       (let ((print-level nil)
@@ -899,7 +899,7 @@ This command will overwrite pin records by force."
     (with-temp-buffer
       (insert-file-contents input)
       (setq binky-records
-            (--map (if-let ((buf (get-file-buffer (binky--prop it :file))))
+            (--map (if-let*  ((buf (get-file-buffer (binky--prop it :file))))
                        (with-current-buffer buf
                          (cons (-take 2 it)
                                (list (binky--marker (binky--prop it :position)))))
