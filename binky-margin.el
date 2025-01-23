@@ -1,6 +1,6 @@
 ;;; binky-margin.el --- Highlight binky records on margins -*- lexical-binding: t -*-
 
-;; Copyright (C) 2023 liuyinz
+;; Copyright (C) 2023, 2025 liuyinz
 
 ;; This file is not a part of GNU Emacs.
 

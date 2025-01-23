@@ -1,12 +1,13 @@
 ;;; binky.el --- Jump between points like a rabbit -*- lexical-binding: t -*-
 
-;; Copyright (C) 2022, 2023, 2024 liuyinz
+;; Copyright (C) 2023-2025 Eki Zhang
 
-;; Author: liuyinz <liuyinz95@gmail.com>
+;; Author: Eki Zhang <liuyinz95@gmail.com>
+;; Maintainer: Eki Zhang <liuyinz95@gmail.com>
 ;; Version: 2.1.0
 ;; Package-Requires: ((emacs "29.1") (dash "2.19.1"))
 ;; Keywords: convenience
-;; Homepage: https://github.com/liuyinz/binky-mode
+;; Homepage: https://github.com/eki3z/binky.el
 
 ;; This file is not a part of GNU Emacs.
 
@@ -52,7 +53,7 @@
   "Jump between points like a rabbit."
   :prefix "binky-"
   :group 'convenience
-  :link '(url-link :tag "Repository" "https://github.com/liuyinz/binky-mode"))
+  :link '(url-link :tag "Repository" "https://github.com/eki3z/binky.el"))
 
 (defcustom binky-debug nil
   "Whether or not to output debug messages while in operation.
