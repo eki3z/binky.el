@@ -45,7 +45,7 @@ footer = """
 """
 # postprocessors
 postprocessors = [
-    { pattern = '\$REPO', replace = "https://github.com/liuyinz/binky.el" }, # replace repository URL
+    { pattern = '\$REPO', replace = "https://github.com/eki3z/binky.el" }, # replace repository URL
 ]
 
 [git]
@@ -57,7 +57,7 @@ filter_unconventional = true
 split_commits = false
 # regex for preprocessing the commit messages
 commit_preprocessors = [
-    # { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](https://github.com/liuyinz/binky.el/issues/${2}))"}, # replace issue numbers
+    # { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](https://github.com/eki3z/binky.el/issues/${2}))"}, # replace issue numbers
 ]
 # regex for parsing and grouping commits
 commit_parsers = [
