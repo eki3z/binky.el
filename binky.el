@@ -4,7 +4,7 @@
 
 ;; Author: Eki Zhang <liuyinz95@gmail.com>
 ;; Maintainer: Eki Zhang <liuyinz95@gmail.com>
-;; Version: 2.1.0
+;; Version: 2.2.0
 ;; Package-Requires: ((emacs "29.1") (dash "2.19.1"))
 ;; Keywords: convenience
 ;; Homepage: https://github.com/eki3z/binky.el
